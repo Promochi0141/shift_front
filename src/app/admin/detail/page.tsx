@@ -88,6 +88,8 @@ const Page: React.FC = () => {
                 <h1>{message}</h1>
                 <button className="mt-6 ml-70p focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={() => { setIsOpen(false); router.push('/login'); localStorage.removeItem('token') }}>OK</button>
             </Modal>
+            {/* /adminへのハイパーリンクボタンを置く */}
+            <button className="mt-6 ml-70p focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={() => { router.push('/admin') }}>戻る</button>
             <form onSubmit={handleSubmit}>
                 <input type="file" accept=".csv" onChange={handleFileChange} />
                 <button type="submit">アップロード</button>
