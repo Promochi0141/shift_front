@@ -16,7 +16,8 @@ export async function fetchShifts(id: string): Promise<Shift[]> {
     const shifts = data.filter((shift: Shift) => {
         // end_timeは "09:00:00"のような文字列なので、Dateオブジェクトに変換する
         const end_time = new Date(`${shift.date}T${shift.end_time}`);
-        return end_time > now;
+        const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+        return end_time > now && end_time < endOfDay;
     });
     shifts.sort((a: Shift, b: Shift) => {
         const endTimeA = new Date(`${a.date}T${a.end_time}`);
