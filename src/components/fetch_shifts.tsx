@@ -11,7 +11,7 @@ export async function fetchShifts(id: string): Promise<Shift[]> {
     }
     const data = await response.json();
     // data.end_timeが現在時刻より後のものだけを返す
-    const now = new Date('2024-01-01T08:00:00');
+    const now = new Date();
 
     const shifts = data.filter((shift: Shift) => {
         // end_timeは "09:00:00"のような文字列なので、Dateオブジェクトに変換する
