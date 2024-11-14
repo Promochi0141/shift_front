@@ -46,7 +46,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     };
 
     return (
-        <div>
+        <>
+            <header className="bg-gray-100 text-gray-600 body-font">
+                <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+                    <nav className="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto font-bold">
+                        <a href="/admin" className="mr-5 hover:text-gray-900">時間割</a>
+                        <a href="/admin/detail" className="mr-5 hover:text-gray-900">仕事情報</a>
+                    </nav>
+                </div>
+            </header>
             <Modal
                 isOpen={isModalOpen}
                 onRequestClose={handleCloseModal}
@@ -58,7 +66,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </Modal>
             {/* childrenを表示 */}
             {children}
-        </div>
+        </>
     );
 };
 

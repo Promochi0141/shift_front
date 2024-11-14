@@ -121,10 +121,11 @@ const CsvUploader: React.FC = () => {
                         <option value="2024-11-25">11月25日</option>
                     </select>
                     <input
+                        required
                         type="file"
                         accept=".csv"
                         onChange={handleFileChange}
-                        className="text-cyan-300 bg-gray-900 border border-cyan-500 rounded-lg p-3 w-auto transition duration-300 ease-in-out transform hover:scale-105"
+                        className="text-cyan-300 bg-gray-900 border border-cyan-500 rounded-lg p-3 w-auto transition duration-300 ease-in-out transform hover:scale-105 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     />
                 </div>
                 <input

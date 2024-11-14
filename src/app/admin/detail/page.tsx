@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Modal from 'react-modal';
 
-
 const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL + '/api/details_csv';
 const modalStyle: ReactModal.Styles = {
     overlay: {
@@ -88,12 +87,26 @@ const Page: React.FC = () => {
                 <h1>{message}</h1>
                 <button className="mt-6 ml-70p focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={() => { setIsOpen(false); router.push('/login'); localStorage.removeItem('token') }}>OK</button>
             </Modal>
-            {/* /adminへのハイパーリンクボタンを置く */}
-            <button className="mt-6 ml-70p focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={() => { router.push('/admin') }}>戻る</button>
-            <form onSubmit={handleSubmit}>
-                <input type="file" accept=".csv" onChange={handleFileChange} />
-                <button type="submit">アップロード</button>
-            </form>
+            <div className="w-full min-h-screen flex items-center justify-center bg-gray-800 p-4">
+                <div className="bg-gray-700 flex flex-col items-center rounded-lg shadow-lg w-full max-w-md p-6 border border-cyan-500">
+                    <form onSubmit={handleSubmit} className="flex flex-col items-center w-full space-y-4">
+                        <input
+                            required
+                            type="file"
+                            accept=".csv"
+                            onChange={handleFileChange}
+                            className="text-cyan-300 bg-gray-800 border border-cyan-500 rounded-lg p-3 w-full transition duration-300 ease-in-out transform hover:scale-105 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                        />
+                        <button
+                            type="submit"
+                            className="font-bold py-3 px-6 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:scale-105 bg-cyan-500 hover:bg-cyan-600 text-white"
+                        >
+                            アップロード
+                        </button>
+                    </form>
+                </div>
+            </div>
+
         </>
     );
 };
