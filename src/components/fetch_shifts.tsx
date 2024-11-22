@@ -18,12 +18,32 @@ export async function fetchShifts(id: string): Promise<Shift[]> {
         const end_time = new Date(`${shift.date}T${shift.end_time}`);
         const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
         return end_time > now && end_time < endOfDay;
-    });
-    shifts.sort((a: Shift, b: Shift) => {
+    }).sort((a: Shift, b: Shift) => {
         const endTimeA = new Date(`${a.date}T${a.end_time}`);
         const endTimeB = new Date(`${b.date}T${b.end_time}`);
         return endTimeA.getTime() - endTimeB.getTime();
     });
 
-    return shifts;
+    // 連続したシフトを統合する
+    const mergedShifts: Shift[] = [];
+    let i = 0;
+
+    while (i < shifts.length) {
+        let currentShift = shifts[i];
+        let j = i + 1;
+
+        // 連続するシフトを統合する
+        while (j < shifts.length && currentShift.end_time === shifts[j].start_time && currentShift.name === shifts[j].name && currentShift.date === shifts[j].date) {
+            currentShift = {
+                ...currentShift,
+                end_time: shifts[j].end_time
+            };
+            j++;
+        }
+
+        mergedShifts.push(currentShift);
+        i = j; // 次のシフトに進む
+    }
+
+    return mergedShifts;
 }

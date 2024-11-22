@@ -65,6 +65,16 @@ export default function ShiftListPage() {
         return () => clearInterval(intervalId); // クリーンアップ
     }, []);
 
+    useEffect(() => {
+        const reloadPage = () => {
+            window.location.reload();
+        };
+
+        const timeoutId = setTimeout(reloadPage, 15 * 60 * 1000); // 15分後にリロード
+
+        return () => clearTimeout(timeoutId); // クリーンアップ
+    }, []);
+
     return (
         <div className="min-h-screen">
             {shifts === null ? (

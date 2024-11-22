@@ -35,7 +35,7 @@ const CsvUploader: React.FC = () => {
     const [message, setMessage] = useState<string>('');
     const router = useRouter();
 
-    const today = new Date().toISOString().split('T')[0];
+    // const today = new Date().toISOString().split('T')[0];
 
     useEffect(() => {
         if (file && date) {
@@ -116,7 +116,7 @@ const CsvUploader: React.FC = () => {
                         className="bg-gray-900 border border-cyan-500 text-cyan-300 text-lg rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-auto p-3 transition duration-300 ease-in-out transform hover:scale-105"
                     >
                         <option defaultValue=''>日付を選んでください</option>
-                        <option value={today}>テスト用({today})</option>
+                        {/* <option value={today}>テスト用({today})</option> */}
                         <option value="2024-11-22">11月22日</option>
                         <option value="2024-11-23">11月23日</option>
                         <option value="2024-11-24">11月24日</option>
